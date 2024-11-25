@@ -1,10 +1,8 @@
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .models import Person
 import json
 
-@csrf_exempt
 def update_row_data(request):
     if request.method == 'POST':
         data = json.loads(request.body)

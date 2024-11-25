@@ -43,6 +43,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="editForm">
+                    {% csrf_token %}
                     <div class="modal-body">
                         <input type="hidden" id="rowId">
                         <div class="mb-3">
@@ -69,6 +70,7 @@
 
     <script>
       $(document).ready(function() {
+        let csrfToken = $('input[name=csrfmiddlewaretoken]').val();
         let table = $('#dataTable').DataTable();
     
         // Handle Edit button click
@@ -98,6 +100,9 @@
               url: '/api/update', // Endpoint for updating data
               method: 'POST',
               contentType: 'application/json',
+              headers: {
+                  'X-CSRFToken': csrfToken
+              },
               data: JSON.stringify({
                   id: rowId,
                   name: updatedName,
