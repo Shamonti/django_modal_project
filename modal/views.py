@@ -24,11 +24,6 @@ def update_row_data(request):
 
     return JsonResponse({'success': False, 'message': 'Invalid request method'})
 
-def get_table_data(request):
-    persons = Person.objects.all()
-    data = list(persons.values('id', 'name', 'age'))  # Serialize data for JSON response
-    return JsonResponse({'data': data})
-
 def table(request):
     people = Person.objects.all()
     return render(request, 'modal.html', {'people': people})

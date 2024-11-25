@@ -22,6 +22,5 @@ from modal import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("table/", views.table, name="table"),
-    path('api/data', views.get_table_data, name='get_table_data'),
     path("api/update", views.update_row_data, name="update_row_data"),
 ]
